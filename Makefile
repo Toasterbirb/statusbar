@@ -2,8 +2,9 @@ BIN=statusbar
 PREFIX=/usr/local
 
 CXX=g++
-CXXFLAGS=-O2 -std=c++20 -mtune=generic -I./include -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Wnoexcept -Woverloaded-virtual -Wsign-promo -Wstrict-null-sentinel -Wundef -Werror -Wno-unused
-LDFLAGS=
+INC=-I./include -I./vendor/clipp/include
+CXXFLAGS=-O1 -g -std=c++20 -mtune=generic $(INC) -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-declarations -Wmissing-include-dirs -Woverloaded-virtual -Wsign-promo -Wstrict-null-sentinel -Wundef -Werror -Wno-unused
+LDFLAGS=-lX11
 
 all: $(BIN)
 
@@ -20,6 +21,6 @@ uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/$(BIN)
 
 clean:
-	rm -f ./$(BIN) *.o
+	rm -f ./$(BIN) ./src/*.o
 
 .PHONY: clean
