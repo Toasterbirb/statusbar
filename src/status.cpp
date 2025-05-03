@@ -8,6 +8,7 @@
 
 #include "modules.hpp"
 #include "status.hpp"
+#include "types.hpp"
 
 using namespace std::chrono_literals;
 
@@ -38,8 +39,8 @@ public:
 		constexpr static const char* interval_key = "interval";
 		constexpr static size_t default_interval_s = 1;
 
-		const long interval_s = module_json.contains(interval_key)
-			? (long)module_json.at(interval_key)
+		const i64 interval_s = module_json.contains(interval_key)
+			? (i64)module_json.at(interval_key)
 			: default_interval_s;
 
 		const auto current_time = std::chrono::system_clock::now();
