@@ -60,6 +60,11 @@ namespace module
 
 		{
 			std::fstream meminfo("/proc/meminfo", std::ios::in);
+
+			// don't attempt to read from the meminfo file if it can't be opened
+			if (!meminfo.is_open())
+				return "";
+
 			std::string name;
 			u64 value;
 			std::string unit;
