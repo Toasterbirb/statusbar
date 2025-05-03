@@ -96,7 +96,7 @@ void status_loop(const config& cfg, const bool verbose)
 		exit(1);
 	}
 
-	// keep track of the previous status text to avoid unnecessary uphttps://tools.suckless.org/slstatus/dates
+	// keep track of the previous status text to avoid unnecessary updates
 	std::string old_status_line = " ";
 
 	std::vector<module_state> state_arr;
