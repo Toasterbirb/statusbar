@@ -32,7 +32,7 @@ namespace module
 
 		pclose(pipe);
 
-		// pop off the newline at the end of the command printed out one
+		// pop off the newline at the end of the command if it printed out one
 		if (!text.empty() && text.at(text.size() - 1) == '\n')
 			text.pop_back();
 
