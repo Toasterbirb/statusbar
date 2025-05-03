@@ -55,31 +55,33 @@ namespace module
 	// http://birbgitfh224rep6tmdofmr6qlo6wx43umqzt3hjubnncr55sdlfmtad.onion/toasterbirb/meminfo
 	std::string memory(const nlohmann::json& module_cfg)
 	{
-		std::fstream meminfo("/proc/meminfo", std::ios::in);
-		std::string name;
-		u64 value;
-		std::string unit;
-
 		u64 mem_total{};
 		u64 total_free{};
 
-		// Read in the amount of available memory and swap
-		while (meminfo >> name >> value >> unit)
 		{
-			if (name == "MemTotal:" || name == "SwapTotal:")
-			{
-				mem_total += value;
-				continue;
-			}
+			std::fstream meminfo("/proc/meminfo", std::ios::in);
+			std::string name;
+			u64 value;
+			std::string unit;
 
-			if (name == "MemAvailable:" || name == "SwapFree:")
-				total_free += value;
+			// Read in the amount of available memory and swap
+			while (meminfo >> name >> value >> unit)
+			{
+				if (name == "MemTotal:" || name == "SwapTotal:")
+				{
+					mem_total += value;
+					continue;
+				}
+
+				if (name == "MemAvailable:" || name == "SwapFree:")
+					total_free += value;
+			}
 		}
 
 		// Convert the free memory from kilobytes to gigabytes
 		constexpr f32 divisor = 1.0f / 1024.0f / 1024.0f;
-		f32 total_free_gb = total_free * divisor;
-		f32 total_mem_gb = mem_total * divisor;
+		const f32 total_free_gb = total_free * divisor;
+		const f32 total_mem_gb = mem_total * divisor;
 
 		// Increase precision if the amount of free memory is more than 10 gigabytes
 		const i32 precision = module_cfg.contains("decimals") ? (i32)module_cfg.at("decimals") : 1;
