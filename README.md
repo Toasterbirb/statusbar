@@ -16,14 +16,14 @@ The module are stored into an array and configured with different variables. The
 ### Available modules
 
 #### text
-The *text* module simply prints out static text that never changes.
+Print out static text that never changes.
 
 | Variable | Optional | Function |
 |----------|----------|----------|
 | text     | No       | Text to display |
 
 #### shell
-The *shell* module executes the given shell command and displays the output. The command output should all fit into a singular line.
+Execute a shell command and display the output. The command output should all fit into a singular line.
 
 | Variable | Optional | Function |
 |----------|----------|----------|
