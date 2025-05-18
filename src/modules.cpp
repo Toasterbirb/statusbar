@@ -8,11 +8,15 @@
 
 namespace module
 {
+	// required options:
+	//  text | text to display
 	std::string text(const nlohmann::json& module_cfg)
 	{
 		return module_cfg.at("text");
 	}
 
+	// required options:
+	//  cmd | command to execute
 	std::string shell(const nlohmann::json& module_cfg)
 	{
 		const std::string& cmd = module_cfg.at("cmd");
@@ -53,6 +57,9 @@ namespace module
 
 	// copied over from the meminfo project
 	// http://birbgitfh224rep6tmdofmr6qlo6wx43umqzt3hjubnncr55sdlfmtad.onion/toasterbirb/meminfo
+	//
+	// available optional options:
+	//  decimals | how many decimal points of accuracy should be shown
 	std::string memory(const nlohmann::json& module_cfg)
 	{
 		u64 mem_total{};

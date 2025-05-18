@@ -1,0 +1,20 @@
+{
+	"separator": " | ",
+	"modules": [
+		{
+			"name": "text",
+			"text": "Hello world!"
+		},
+		{
+			"name": "memory",
+			"icon": "Mem: ",
+			"interval": 2,
+			"decimals": 1
+		},
+		{
+			"name": "shell",
+			"cmd": "date '+%b %d (%a) %H:%M%p '",
+			"interval": 5
+		}
+	]
+}
