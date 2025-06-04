@@ -7,34 +7,35 @@ An example configuration is provided in the [statusbar.json](./statusbar.json) f
 
 The module are stored into an array and configured with different variables. The `name` variable specifies the module and is always required. In the table below are the common variables that can be specified for any module.
 
-| Variable | Optional | Function |
-|----------|----------|----------|
-| name     | No       | Specifies the module |
-| icon     | Yes      | Icon or text to display before the module output |
-| interval | Yes      | How many seconds to wait between module updates (default: 1s) |
+| Variable | Optional | Type   | Function |
+|----------|----------|--------|----------|
+| name     | No       | string | Specifies the module |
+| icon     | Yes      | string | Icon or text to display before the module output |
+| interval | Yes      | int    | How many seconds to wait between module updates (default: 1s) |
 
 ### Available modules
 
 #### text
 Print out static text that never changes.
 
-| Variable | Optional | Function |
-|----------|----------|----------|
-| text     | No       | Text to display |
+| Variable | Optional | Type   | Function |
+|----------|----------|--------|----------|
+| text     | No       | string | Text to display |
 
 #### shell
 Execute a shell command and display the output. The command output should all fit into a singular line.
 
-| Variable | Optional | Function |
-|----------|----------|----------|
-| cmd      | No       | Shell command to execute |
+| Variable | Optional | Type   | Function |
+|----------|----------|--------|----------|
+| cmd      | No       | string | Shell command to execute |
 
 #### memory
 Show the current memory/swap usage of the system.
 
-| Variable | Optional | Function |
-|----------|----------|----------|
-| decimals | Yes      | How many decimal points of accuracy to display |
+| Variable | Optional | Type | Function |
+|----------|----------|------|----------|
+| decimals | Yes      | int  | How many decimal points of accuracy to display |
+| swap     | Yes      | bool | Should swap be included in the total |
 
 
 ## Building

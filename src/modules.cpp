@@ -60,10 +60,13 @@ namespace module
 	//
 	// available optional options:
 	//  decimals | how many decimal points of accuracy should be shown
+	//  swap     | should swap also be included in the total (true/false)
 	std::string memory(const nlohmann::json& module_cfg)
 	{
 		u64 mem_total{};
 		u64 total_free{};
+
+		const bool include_swap = module_cfg.contains("swap") ? (bool)module_cfg.at("swap") : false;
 
 		{
 			std::fstream meminfo("/proc/meminfo", std::ios::in);
@@ -79,13 +82,16 @@ namespace module
 			// Read in the amount of available memory and swap
 			while (meminfo >> name >> value >> unit)
 			{
-				if (name == "MemTotal:" || name == "SwapTotal:")
-				{
+				if (name == "MemTotal:")
 					mem_total += value;
-					continue;
-				}
 
-				if (name == "MemAvailable:" || name == "SwapFree:")
+				if (name == "MemAvailable:")
+					total_free += value;
+
+				if (include_swap && name == "SwapTotal:")
+					mem_total += value;
+
+				if (include_swap && name == "SwapFree:")
 					total_free += value;
 			}
 		}
