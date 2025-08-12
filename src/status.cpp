@@ -18,14 +18,16 @@ public:
 	module_state(const nlohmann::json& module_json)
 	:module_json(module_json)
 	{
-		if (module_json.at("name") == "text")
+		const std::string& module_name = module_json.at("name");
+
+		if (module_name == "text")
 			is_static = true;
 
 		// don't waste threads on static modules
 		if (!is_static)
 			run();
 		else
-			text = modules.at(module_json.at("name"))(module_json);
+			text = modules.at(module_name)(module_json);
 	}
 
 	const nlohmann::json module_json;
