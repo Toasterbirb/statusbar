@@ -89,6 +89,17 @@ private:
 
 void status_loop(const config& cfg, const bool verbose)
 {
+	// make sure that all of the used modules exist
+	for (size_t i = 0; i < cfg.modules.size(); ++i)
+	{
+		const std::string& module_name = cfg.modules.at(i).at("name");
+		if (modules.contains(module_name))
+			continue;
+
+		std::cerr << "non-existent module: " << module_name << '\n';
+		exit(1);
+	}
+
 	// Setup X11 stuff
 	// refer to slstatus (https://tools.suckless.org/slstatus/)
 	// if you need more information on how this might work
@@ -109,17 +120,7 @@ void status_loop(const config& cfg, const bool verbose)
 	while (true)
 	{
 		for (size_t i = 0; i < cfg.modules.size(); ++i)
-		{
-			const std::string& module_name = cfg.modules.at(i).at("name");
-			if (!modules.contains(module_name))
-			{
-				std::cerr << "non-existent module: " << module_name << '\n';
-				XCloseDisplay(dpy);
-				exit(1);
-			}
-
 			state_arr.at(i).poll();
-		}
 
 		// build the status line
 		std::string status_line = cfg.padding ? " " : "";
