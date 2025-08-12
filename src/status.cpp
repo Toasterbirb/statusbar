@@ -120,7 +120,7 @@ void status_loop(const config& cfg, const bool verbose)
 		}
 
 		// build the status line
-		std::string status_line = " ";
+		std::string status_line = cfg.padding ? " " : "";
 		for (size_t i = 0; i < state_arr.size(); ++i)
 		{
 			const std::string& text = state_arr.at(i).txt();
@@ -137,8 +137,8 @@ void status_loop(const config& cfg, const bool verbose)
 				status_line += cfg.separator;
 		}
 
-		// add padding to the end as well
-		status_line.push_back(' ');
+		if (cfg.padding)
+			status_line.push_back(' ');
 
 		if (status_line != old_status_line)
 		{

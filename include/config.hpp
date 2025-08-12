@@ -9,6 +9,10 @@ struct config
 
 	nlohmann::json modules;
 	std::string separator;
+
+	// add one space worth of padding to the beginning and
+	// the end of the bar
+	bool padding{true};
 };
 
 __attribute__((warn_unused_result))

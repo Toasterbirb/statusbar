@@ -1,5 +1,6 @@
 {
 	"separator": " | ",
+	"padding": true,
 	"modules": [
 		{
 			"name": "text",

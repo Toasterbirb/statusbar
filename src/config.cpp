@@ -31,6 +31,10 @@ config::config(const std::string& config_path)
 
 		this->modules = cfg_json.at("modules");
 		this->separator = cfg_json.at("separator");
+
+		constexpr const char* const padding_key = "padding";
+		if (cfg_json.contains(padding_key))
+			this->padding = cfg_json.at(padding_key);
 	}
 	catch (const nlohmann::json::exception& ex)
 	{
