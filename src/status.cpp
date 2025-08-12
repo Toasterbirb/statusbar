@@ -127,14 +127,14 @@ void status_loop(const config& cfg, const bool verbose)
 			if (text.empty())
 				continue;
 
+			if (i > 1)
+				status_line += cfg.separator;
+
 			// print the icon if the module has one
 			if (state_arr.at(i).module_json.contains("icon"))
 				status_line += state_arr.at(i).module_json.at("icon");
 
 			status_line += text;
-
-			if (i < state_arr.size() - 1)
-				status_line += cfg.separator;
 		}
 
 		if (cfg.padding)
