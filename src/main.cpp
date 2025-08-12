@@ -1,4 +1,5 @@
 #include <clipp.h>
+#include <cstdlib>
 #include <filesystem>
 #include <format>
 #include <iostream>
@@ -43,6 +44,9 @@ int main(int argc, char** argv)
 		std::cerr << "config file " << config_path << " does not exist\n";
 		return 1;
 	}
+
+	// kamu would like some rng
+	srand(time(0));
 
 	// parse the config file
 	const config cfg(config_path);

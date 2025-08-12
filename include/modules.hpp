@@ -8,10 +8,12 @@ namespace module
 	std::string text(const nlohmann::json& module_cfg);
 	std::string shell(const nlohmann::json& module_cfg);
 	std::string memory(const nlohmann::json& module_cfg);
+	std::string kamu(const nlohmann::json& module_cfg);
 }
 
 const static std::map<std::string, std::function<std::string(const nlohmann::json& module_cfg)>> modules = {
 	{ "text", module::text },
 	{ "shell", module::shell },
-	{ "memory", module::memory }
+	{ "memory", module::memory },
+	{ "kamu", module::kamu },
 };

@@ -106,4 +106,20 @@ namespace module
 
 		return std::format("{}G/{}G", round(total_mem_gb - total_free_gb, precision), round(total_mem_gb, precision));
 	}
+
+	std::string kamu(const nlohmann::json& module_cfg)
+	{
+		const static std::string neutral = "(„• ‿ •„)";
+		const static std::string blink   = "(„— ‿ —„)";
+		const static std::array<std::string, 2> sleep = { "( — . — )", "( — o — )" };
+
+		const time_t now = time(0);
+		const tm* const ltm = localtime(&now);
+		const bool sleeping = ltm->tm_hour >= 23 || ltm->tm_hour <= 7;
+
+		if (sleeping)
+			return sleep.at((ltm->tm_sec >> 1) % 2 == 0);
+
+		return rand() % 7 == 0 ? blink : neutral;
+	}
 }
