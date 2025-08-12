@@ -137,6 +137,9 @@ void status_loop(const config& cfg, const bool verbose)
 				status_line += cfg.separator;
 		}
 
+		// add padding to the end as well
+		status_line.push_back(' ');
+
 		if (status_line != old_status_line)
 		{
 			if (verbose)
