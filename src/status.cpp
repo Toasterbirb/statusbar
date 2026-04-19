@@ -130,7 +130,9 @@ void status_loop(const config& cfg, const bool verbose)
 			if (text.empty())
 				continue;
 
-			if (i > 1)
+			// make sure that we don't print separators to the beginning
+			// of the status text when there's nothing to separate
+			if (i > 0 && (status_line.size() > 1 || !cfg.padding))
 				status_line += cfg.separator;
 
 			// print the icon if the module has one
